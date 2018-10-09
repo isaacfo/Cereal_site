@@ -1,0 +1,300 @@
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2.5);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* html {
+    font-size: 3rem;
+} */
+
+html, body {
+    /* single value for all 4 sides */
+    padding: 0;
+    margin: 0;
+
+    /* 
+
+        set margin & padding to 0 
+        so that elements stretch to 
+        edge of browser window.
+     */
+}
+
+body {
+    /* outline: 1px solid blue; */
+    font-family: 'Covered By Your Grace', cursive;
+}
+
+.header-text {
+    font-family: 'Gochi Hand', cursive;
+    /* two values: top/bottom  left/right */
+    padding: 0 8px;
+    /* padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 8px;
+    padding-right: 8px; */
+
+    /* outline: 1px solid red; */
+}
+
+/* h1  */
+/* #logo-text */
+.logo-text
+{
+    color: rgba(0,0,0,.9);
+    /* font-size: 1.5rem; */
+    /* font-size: 1.5em; */
+    font-size: 18px;
+    display: inline-block;
+    /* outline: 1px solid red; */
+    margin-right: 20px;
+    /* padding-right: 50px; */
+    /* background-color: yellow; */
+}
+
+.nav-container {
+    display: inline-block;
+    /* outline: 1px solid blue; */
+}
+
+.nav-link
+{
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.hero-image {
+    /* 
+    Because the image is in a different folder,
+    must use ../images/ before the file name.
+     */
+    background-image: url(../images/luckycharms2.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    min-height: 500px;
+    min-width: 100%;
+    /* opacity: 0.3; */
+}
+
+/* "descendant selector" */
+/* 
+.hero-text h2 {
+    font-family: fantasy;
+}     */
+
+.hero-image h2 {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    /* color: #ffffff; */
+    color: rgba(89, 230, 211, 0.884);
+    /* color: rgba(255, 255, 255, 0.9); */
+   
+}    
+
+/* 
+using an ID, which is more specific and 
+overrides the other font-family declarations.
+*/
+/* #lalalala {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+} */
+
+
+/* Flexbox!!!! Aw yeah! */
+.center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-me {
+    padding: 0 8px;
+}
+
+/* 
+no effect, because paragraphs
+are full width already.
+no room for margin. 
+*/
+/* .about-me p {
+    margin: 0 auto;
+} */
+
+/* container determines max size */
+.profile-image {
+    width: 350px;
+    /* another centering technique! */
+    margin: 0 auto;    
+}
+/* img adapts to container */
+.profile-image img {
+    /*
+    constrain either by width OR height.
+    not both.
+    that messes up the aspect ratio.
+     */
+    width: 100%;
+    border-radius: 20%;
+}
+
+
+.contact-links {
+
+    background-color: rgba(0,0,0,0.7);
+    padding:8px 12px;
+    display: flex;
+    justify-content: flex-end;
+    
+}
+.contact-links .fab,
+.contact-links .fas {
+
+    color:white;
+    margin: 0 8px;
+    font-size: 36px;
+    /* transition: transform .25s ease-in-out; */
+
+}
+/* .contact-links a:hover {
+    cursor: pointer;
+} */
+
+.contact-links a:hover .fab,
+.contact-links a:hover .fas, 
+.contact-links a:active .fab
+.contact-links a:active .fas {
+
+    color: pink;
+    /* font-size: 48px; */
+    /* transform: scale(2.2); */
+    animation: zoom;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+}
+
+
+/* 
+Response Web Design Implementation
+a.k.a. Media Queries!
+if/else statements for your CSS
+ */
+/* 
+Common "breakpoints"
+S, M, L, XL, Party size
+
+500px
+768px
+1024px
+1200px
+1400px
+*/
+
+@media screen and (min-width: 500px) {
+
+    /*  
+    1. Turn the .about-me section into a flex container
+    
+    2. Set the width of .about-me-container so that it takes up 70% of the width
+
+    3. Set the width of .profile-image so that it looks good.
+
+    4. Tweak the sizes because it'll look jacked up on the first few attempts.
+    */
+
+    /* 
+    Anywhere you want to shift the layout, add
+    a wrapper div (or section) and turn it into
+    a flex parent (a.k.a. a "flex container")
+    */
+    .about-me {
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* "descendant" selector */
+    .about-me div {
+        /* these apply to any div
+        anywhere inside of .about-me */
+    }
+
+    /* "Direct child" selector */
+    .about-me > div 
+    {
+        /* outline: 1px solid red; */
+    }
+
+    .about-me-container {
+        /* 
+        box-sizing: border-box 
+        makes this behave in a sane way.
+
+        without it, the .about-me-container takes up 70% + 18px
+        */
+        width: 70%;
+        padding-right: 18px;
+    }
+
+    .profile-image {
+        /* outline: 5px solid red; */
+        /* width: 200px; */
+        width: 30%;
+    }
+
+
+}
+
+@media screen and (min-width: 700px) {
+    .hero-text h2 {
+        font-size: 48px;
+        /* outline: 1px solid red; */
+    }
+
+    .header-text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;        
+    }
+
+    .header-text > * {
+        /* outline: 1px solid red; */
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .header-text > nav {
+        /* 
+        do not render! 
+        
+        */
+        /* display: none; */
+
+
+    }
+
+    .hero-image {
+   
+        
+        min-height: 899px;
+        
+    }
+    
+
+}
+
